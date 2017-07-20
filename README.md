@@ -37,6 +37,17 @@ I'm creating aliases for running containers - for example my michalsindler/ionic
 With that alias is possible to call:
 `projectname info` which calls `ionic info` in container
 
+### Run Docker without sudo
+
+If you want to run Docker wihtout `sudo`, you can add your user to group `docker`:
+1. Check if 'docker' group exists `egrep -i "^docker" /etc/group;`
+   If you see output like this:
+   `docker:x:999:<yourusername>`
+   That means that group exists and your user is in it
+2. If group does not exists, create it `sudo groupadd docker`
+3. If your user is not in 'docker' group. add it `sudo gpasswd -a $USER docker`
+4. Changes will be in effect after log out & log in or `newgrp docker`
+
 ## Contributing
 
 1. Fork it!
